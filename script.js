@@ -61,6 +61,11 @@
   });
 
   cw3.addEventListener("click", function () {
-    //TODO
+    answer.textContent = "Processing...";
+    fetch("https://jsonplaceholder.typicode.com/posts", { method: "POST" })
+      .then((response) => response.json())
+      .then((json) => {
+        answer.textContent = `Dodano nowy post o ID = ${json.id}`;
+      });
   });
 })();
