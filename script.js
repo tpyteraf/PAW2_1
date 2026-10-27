@@ -34,7 +34,30 @@
   });
 
   cw2.addEventListener("click", function () {
-    //TODO
+    const postId = document.getElementById("cw2_select").value;
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .then((response) => response.json())
+      .then((el) => {
+        answer.innerHTML = "";
+        const ul = document.createElement("ul");
+
+        const li = document.createElement("li");
+        li.textContent = `Post nr ${el.id}, userId: ${el.userId}`;
+        ul.appendChild(li);
+
+        const ul2 = document.createElement("ul");
+        li.appendChild(ul2);
+        const title = document.createElement("li");
+        title.textContent = el.title;
+        const body = document.createElement("li");
+        body.textContent = el.body;
+
+        ul2.appendChild(title);
+        ul2.appendChild(body);
+
+        answer.appendChild(ul);
+      });
   });
 
   cw3.addEventListener("click", function () {
